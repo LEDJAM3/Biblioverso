@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Views.RegisterActivity"
+    android:gravity="center"
+    android:background="@drawable/gradientbg">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Introduzca los siguientes datos"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_margin="16dp"
+        android:textColor="@color/white"/>
+
+    <EditText
+        android:id="@+id/etxtNombre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nombre"
+        android:inputType="textPersonName"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="16dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/gray"
+        android:imeOptions="actionNext"/>
+
+    <EditText
+        android:id="@+id/etxtApellido"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Apellido"
+        android:inputType="textPersonName"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="16dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/gray"
+        android:imeOptions="actionNext"/>
+
+    <EditText
+        android:id="@+id/etxtEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="16dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/gray"
+        android:imeOptions="actionNext"/>
+
+    <EditText
+        android:id="@+id/etxtTelefono"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Teléfono (opcional)"
+        android:inputType="phone"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="16dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/gray"
+        android:imeOptions="actionNext"/>
+
+    <EditText
+        android:id="@+id/etxtDireccion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Dirección (opcional)"
+        android:inputType="textPostalAddress"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="16dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/gray"
+        android:imeOptions="actionNext"/>
+
+    <EditText
+        android:id="@+id/etxtCI"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Cédula de Identidad (CI)"
+        android:inputType="number"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="16dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/gray"
+        android:imeOptions="actionNext"/>
+
+    <EditText
+        android:id="@+id/etxtUsuario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Usuario"
+        android:inputType="text"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="16dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/gray"
+        android:imeOptions="actionNext"/>
+
+    <EditText
+        android:id="@+id/etxtPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Contraseña"
+        android:inputType="textPassword"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="16dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/gray"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Género"
+        android:textColor="@color/white"
+        android:textColorHint="@color/gray"/>
+
+    <RadioGroup
+        android:id="@+id/rgGenero"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="16dp"
+        android:gravity="center">
+
+        <RadioButton
+            android:id="@+id/rbM"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Masculino"
+            android:layout_marginRight="25dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/gray"/>
+
+        <RadioButton
+            android:id="@+id/rbF"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Femenino"
+            android:textColor="@color/white"
+            android:textColorHint="@color/gray"/>
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/btnRegistrar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Registrar"
+        android:layout_marginHorizontal="16dp"
+        android:backgroundTint="@color/color2"/>
+</LinearLayout>
