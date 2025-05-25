@@ -64,6 +64,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun iniciarSesion() {
+        Toast.makeText(this@MainActivity, "Espere un momento...", Toast.LENGTH_SHORT).show()
         val user = etxtLoginUser.textStr()
         val pass = etxtLoginPass.textStr()
 
