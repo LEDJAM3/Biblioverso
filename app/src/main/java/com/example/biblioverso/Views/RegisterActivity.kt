@@ -29,7 +29,6 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var rbM: RadioButton
     private lateinit var rbF: RadioButton
 
-    private val clienteController = ClienteController()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -100,7 +99,7 @@ class RegisterActivity : AppCompatActivity() {
         )
 
         lifecycleScope.launch {
-            val success = clienteController.crearCliente(persona, cliente)
+            val success = ClienteController().crearCliente(persona, cliente)
             if (success) {
                 Toast.makeText(this@RegisterActivity, "Registro Exitoso", Toast.LENGTH_LONG).show()
                 finish()

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:padding="5dp"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ImageView
+        android:id="@+id/itlImagen"
+        android:layout_width="150dp"
+        android:layout_height="190dp"
+        tools:background="@color/color1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <TextView
+        android:id="@+id/itlTitulo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:autoSizeTextType="uniform"
+        android:autoSizeMinTextSize="20sp"
+        android:autoSizeMaxTextSize="25sp"
+        android:autoSizeStepGranularity="2sp"
+        tools:text="Titulo del libro"
+        android:layout_margin="5dp"
+        app:layout_constraintStart_toEndOf="@id/itlImagen"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/itlAutor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxWidth="190dp"
+        android:maxLines="1"
+        tools:text="Autor del libro"
+        android:textSize="20dp"
+        android:layout_margin="5dp"
+        app:layout_constraintStart_toEndOf="@id/itlImagen"
+        app:layout_constraintTop_toBottomOf="@id/itlTitulo"/>
+
+    <TextView
+        android:id="@+id/itlAnio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="anio"
+        android:textSize="20dp"
+        android:layout_margin="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/itlTitulo"/>
+
+    <TextView
+        android:id="@+id/itlSinopsis"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:maxLines="5"
+        android:ellipsize="end"
+        android:autoSizeTextType="uniform"
+        android:autoSizeMinTextSize="12sp"
+        android:autoSizeMaxTextSize="24sp"
+        android:autoSizeStepGranularity="2sp"
+        android:layout_margin="5dp"
+        tools:text="Sinopsis del libro"
+        app:layout_constraintTop_toBottomOf="@id/itlAutor"
+        app:layout_constraintStart_toEndOf="@id/itlImagen"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

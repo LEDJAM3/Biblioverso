@@ -19,7 +19,6 @@ import com.example.biblioverso.Utils.textStr
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
-    private val clienteController = ClienteController()
     private lateinit var etxtLoginUser: EditText
     private lateinit var etxtLoginPass: EditText
 
@@ -69,7 +68,7 @@ class MainActivity : AppCompatActivity() {
         val pass = etxtLoginPass.textStr()
 
         lifecycleScope.launch {
-            val cliente = clienteController.iniciarSesion(user, pass)
+            val cliente = ClienteController().iniciarSesion(user, pass)
 
             if (cliente != null) {
                 val prefsHelper = PreferencesHelper(this@MainActivity)
