@@ -1,5 +1,6 @@
 package com.example.biblioverso.Adapters
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.biblioverso.Models.Libro
 import com.example.biblioverso.R
+import com.example.biblioverso.Views.LibroActivity
 
 class LibroAdapter(listaOriginal: List<Libro>) : RecyclerView.Adapter<LibroAdapter.ViewHolder>() {
     private var listaFiltrada = listaOriginal.toMutableList()
@@ -44,9 +46,15 @@ class LibroAdapter(listaOriginal: List<Libro>) : RecyclerView.Adapter<LibroAdapt
             val urlSegura = libro.portada.replace("http://", "https://")
             Glide.with(itlImagen.context)
                 .load(urlSegura)
-                .placeholder(R.drawable.logazo)
-                .error(R.drawable.gradientbg)
+                .placeholder(R.drawable.icons8_imagen_100)
+                .error(R.drawable.icons8_imagen_100)
                 .into(itlImagen)
+
+            itemView.setOnClickListener {
+                val intent = Intent(itemView.context, LibroActivity::class.java)
+                intent.putExtra("Libro", libro)
+                itemView.context.startActivity(intent)
+            }
         }
     }
 }

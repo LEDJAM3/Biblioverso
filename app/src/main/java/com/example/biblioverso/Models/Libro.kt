@@ -1,6 +1,7 @@
 package com.example.biblioverso.Models
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class Libro(
     @SerializedName("id_libro")
@@ -14,7 +15,7 @@ data class Libro(
     @SerializedName("fecha_publicacion")
     val fechaPublicacion: String,
     val autor: List<Autor>
-)
+): Serializable
 
 data class Autor(
     val nombre: String,
@@ -26,4 +27,4 @@ data class Autor(
     @SerializedName("fecha_muerte")
     val fechaMuerte: Int?,
     val nacionalidad: String
-)
+): Serializable

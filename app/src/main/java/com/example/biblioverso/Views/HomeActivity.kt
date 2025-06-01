@@ -1,7 +1,6 @@
 package com.example.biblioverso.Views
 
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -104,7 +103,6 @@ class HomeActivity : AppCompatActivity() {
                 LibroRepository.libros = libros
                 initRecycler()
             }
-            Log.e("Libros", libros.toString())
         }
     }
 
