@@ -10,8 +10,12 @@ import io.ktor.client.HttpClient
 import io.ktor.client.engine.android.Android
 import io.ktor.client.request.get
 import io.ktor.client.request.headers
+import io.ktor.client.request.post
+import io.ktor.client.request.setBody
 import io.ktor.client.statement.HttpResponse
 import io.ktor.client.statement.bodyAsText
+import io.ktor.http.ContentType
+import io.ktor.http.contentType
 import io.ktor.http.isSuccess
 
 class LibroController {
@@ -62,6 +66,23 @@ class LibroController {
         } catch (e: Exception) {
             Log.e("Obtener Calificaciones", e.message.toString())
             0.0f
+        }
+    }
+
+    suspend fun publicarOpinion(opinion: Opinion): Boolean {
+        return try {
+            val response: HttpResponse = client.post("${BASE_URL}opiniones") {
+                contentType(ContentType.Application.Json)
+                headers {
+                    append("apikey", API_KEY)
+                    append("Authorization", "Bearer $API_KEY")
+                }
+                setBody(Gson().toJson(opinion))
+            }
+            response.status.isSuccess()
+        } catch (e: Exception) {
+            Log.e("PublicarOpinion", "Error al publicar opinión: ${e.message}")
+            false
         }
     }
 }

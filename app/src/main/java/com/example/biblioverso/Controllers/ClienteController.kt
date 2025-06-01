@@ -49,7 +49,6 @@ class ClienteController {
                 }
                 setBody(Gson().toJson(cliente))
             }
-
             response.status.isSuccess()
         }
         catch (e: Exception) {

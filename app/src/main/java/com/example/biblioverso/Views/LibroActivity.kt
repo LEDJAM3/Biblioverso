@@ -1,8 +1,11 @@
 package com.example.biblioverso.Views
 
 import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -10,7 +13,9 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.example.biblioverso.Controllers.LibroController
+import com.example.biblioverso.Data.SessionManager.clienteActual
 import com.example.biblioverso.Models.Libro
+import com.example.biblioverso.Models.Opinion
 import com.example.biblioverso.R
 import com.google.android.material.appbar.CollapsingToolbarLayout
 import kotlinx.coroutines.launch
@@ -27,6 +32,16 @@ class LibroActivity : AppCompatActivity() {
         }
         val libro = intent.getSerializableExtra("Libro") as Libro
         cargarLibro(libro)
+
+        val etOpinion: EditText = findViewById(R.id.etOpinion)
+        val rbarNuevaCal: android.widget.RatingBar = findViewById(R.id.rbarNuevaCal)
+        val btnEnviarCal: Button = findViewById(R.id.btnEnviarCal)
+
+        btnEnviarCal.setOnClickListener {
+            val txtOpinion = etOpinion.text.toString()
+            val calificacion = rbarNuevaCal.rating.toInt()
+            publicarOpinion(libro, txtOpinion, calificacion)
+        }
     }
 
     private fun cargarLibro(libro: Libro) {
@@ -68,6 +83,22 @@ class LibroActivity : AppCompatActivity() {
             val calificacion = libroController.obtenerCalificacion(idLibro)
             val ratingBar: android.widget.RatingBar = findViewById(R.id.rbarCalificacion)
             ratingBar.rating = calificacion
+        }
+    }
+
+    private fun publicarOpinion(libro: Libro, txtOpinion: String, calificacion: Int) {
+        val ci_cliente = clienteActual!!.ciCliente
+        val opinion = Opinion(libro.idLibro, ci_cliente, calificacion, txtOpinion)
+
+        lifecycleScope.launch {
+            val libroController = LibroController()
+            val resultado = libroController.publicarOpinion(opinion)
+            if (resultado) {
+                Toast.makeText(this@LibroActivity,"Gracias por darnos su opinion!", Toast.LENGTH_SHORT).show()
+            }
+            else {
+                Toast.makeText(this@LibroActivity,"Ha ocurrido un error, por favor intente mas tarde.", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 }
