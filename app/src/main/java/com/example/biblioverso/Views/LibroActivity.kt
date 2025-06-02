@@ -13,6 +13,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.example.biblioverso.Controllers.LibroController
+import com.example.biblioverso.Controllers.ReservaController
 import com.example.biblioverso.Data.SessionManager.clienteActual
 import com.example.biblioverso.Models.Libro
 import com.example.biblioverso.Models.Opinion
@@ -37,10 +38,25 @@ class LibroActivity : AppCompatActivity() {
         val rbarNuevaCal: android.widget.RatingBar = findViewById(R.id.rbarNuevaCal)
         val btnEnviarCal: Button = findViewById(R.id.btnEnviarCal)
 
+
+        val btnReservar: Button = findViewById(R.id.btnReservar)
+
+        btnReservar.setOnClickListener {
+            reservar(libro)
+        }
+
         btnEnviarCal.setOnClickListener {
             val txtOpinion = etOpinion.text.toString()
             val calificacion = rbarNuevaCal.rating.toInt()
             publicarOpinion(libro, txtOpinion, calificacion)
+        }
+    }
+
+    private fun reservar(libro: Libro) {
+        Toast.makeText(this@LibroActivity, "Espere un momento...", Toast.LENGTH_SHORT).show()
+        lifecycleScope.launch {
+            val mensaje = ReservaController().reservar(libro)
+            Toast.makeText(this@LibroActivity, mensaje, Toast.LENGTH_SHORT).show()
         }
     }
 

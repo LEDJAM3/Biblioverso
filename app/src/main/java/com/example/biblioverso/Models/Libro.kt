@@ -28,3 +28,13 @@ data class Autor(
     val fechaMuerte: Int?,
     val nacionalidad: String
 ): Serializable
+
+data class Stock(
+    @SerializedName("id_stock")
+    val idStock: Int,
+    @SerializedName("id_libro")
+    val idLibro: Int,
+    val ubicacion: String,
+    val disponibilidad: Boolean,
+    val estado: String
+)

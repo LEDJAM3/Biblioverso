@@ -34,13 +34,9 @@ class ClienteController {
             }
 
             val personaBody = responsePersona.bodyAsText()
-            Log.e("CrearCliente", "Persona response: $personaBody")
             val personaCreada = Gson().fromJson(personaBody.trim().removeSurrounding("[", "]"), Persona::class.java)
             val idPersona = personaCreada.idPersona
-            Log.e("idPersona", idPersona.toString())
             cliente.idPersona = idPersona
-            Log.e("Cliente", cliente.toString())
-
             val response: HttpResponse = client.post("${BASE_URL}cliente") {
                 contentType(ContentType.Application.Json)
                 headers {
