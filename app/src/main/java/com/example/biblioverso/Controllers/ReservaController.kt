@@ -4,6 +4,7 @@ import android.util.Log
 import com.example.biblioverso.Data.SessionManager.clienteActual
 import com.example.biblioverso.Models.Libro
 import com.example.biblioverso.Models.Reserva
+import com.example.biblioverso.Models.ReservaAdap
 import com.example.biblioverso.Models.Stock
 import com.example.biblioverso.Utils.Constants.BASE_URL
 import com.example.biblioverso.Utils.Constants.API_KEY
@@ -31,7 +32,7 @@ class ReservaController {
             if (idReserva != null) {
                 detallarReserva(idReserva, libro.idLibro)
                 relacionarClienteReserva(idReserva)
-                actualizarStock(libro.idLibro)
+                actualizarStock(libro.idLibro, estaDisponible = true, disponibilidad = false)
                 return "Reserva realizada con éxito!"
             } else {
                 return "Ha ocurrido un error, por favor intente más tarde."
@@ -120,10 +121,10 @@ class ReservaController {
         }
     }
 
-    suspend fun actualizarStock(idLibro: Int): Boolean {
+    suspend fun actualizarStock(idLibro: Int, estaDisponible: Boolean, disponibilidad: Boolean): Boolean {
         return try {
             val response: HttpResponse =
-                client.get("${BASE_URL}stock?id_libro=eq.$idLibro&disponibilidad=eq.true") {
+                client.get("${BASE_URL}stock?id_libro=eq.$idLibro&disponibilidad=eq.$estaDisponible") {
                     headers {
                         append("apikey", API_KEY)
                         append("Authorization", "Bearer $API_KEY")
@@ -139,7 +140,7 @@ class ReservaController {
                         append("apikey", API_KEY)
                         append("Authorization", "Bearer $API_KEY")
                     }
-                    setBody("""{"disponibilidad": false}""")
+                    setBody("""{"disponibilidad": $disponibilidad}""")
                 }
                 patchResponse.status.isSuccess()
             }
@@ -150,6 +151,25 @@ class ReservaController {
         catch (e: Exception) {
             Log.e("Actualizar Stock", e.message.toString())
             false
+        }
+    }
+
+    suspend fun obtenerReservasAdap(): List<ReservaAdap>? {
+        return try {
+            val response: HttpResponse =
+                client.get("${BASE_URL}cli_mul_res?ci_cliente=eq.${clienteActual?.ciCliente}&select=reserva(id_reserva,estado,fec_limite,detalle_reserva(libro(id_libro,titulo,portada)))") {
+                    headers {
+                        append("apikey", API_KEY)
+                        append("Authorization", "Bearer $API_KEY")
+                    }
+                }
+            val body = response.bodyAsText()
+            val reservas = Gson().fromJson(body, Array<ReservaAdap>::class.java).toList()
+            reservas
+        }
+        catch (e: Exception) {
+            Log.e("Obtener Reservas Adap", e.message.toString())
+            null
         }
     }
 }

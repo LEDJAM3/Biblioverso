@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="200dp"
     android:padding="5dp"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageView
-        android:id="@+id/itlImagen"
+        android:id="@+id/itrImagen"
         android:layout_width="150dp"
         android:layout_height="190dp"
         tools:background="@color/color1"
@@ -16,7 +16,7 @@
         app:layout_constraintBottom_toBottomOf="parent"/>
 
     <TextView
-        android:id="@+id/itlTitulo"
+        android:id="@+id/itrTitulo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textSize="20sp"
@@ -28,46 +28,44 @@
         android:autoSizeStepGranularity="2sp"
         tools:text="Titulo del libro"
         android:layout_margin="5dp"
-        app:layout_constraintStart_toEndOf="@id/itlImagen"
+        app:layout_constraintStart_toEndOf="@id/itrImagen"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/itlAutor"
+        android:id="@+id/itrFecha"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:maxWidth="190dp"
         android:maxLines="1"
-        tools:text="Autor del libro"
+        tools:text="Fecha limite"
         android:textSize="20sp"
         android:layout_margin="5dp"
-        app:layout_constraintStart_toEndOf="@id/itlImagen"
-        app:layout_constraintTop_toBottomOf="@id/itlTitulo"/>
+        app:layout_constraintStart_toEndOf="@id/itrImagen"
+        app:layout_constraintTop_toBottomOf="@id/itrTitulo"/>
 
     <TextView
-        android:id="@+id/itlAnio"
+        android:id="@+id/itrEstado"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="anio"
+        android:maxWidth="190dp"
+        android:maxLines="1"
+        tools:text="Estado de la reserva"
         android:textSize="20sp"
         android:layout_margin="5dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/itlTitulo"/>
+        app:layout_constraintTop_toBottomOf="@id/itrFecha"
+        app:layout_constraintStart_toEndOf="@id/itrImagen"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
-    <TextView
-        android:id="@+id/itlSinopsis"
-        android:layout_width="0dp"
+    <Button
+        android:id="@+id/itrBtnCancelar"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:maxLines="5"
-        android:ellipsize="end"
-        android:autoSizeTextType="uniform"
-        android:autoSizeMinTextSize="12sp"
-        android:autoSizeMaxTextSize="24sp"
-        android:autoSizeStepGranularity="2sp"
-        android:layout_margin="5dp"
-        tools:text="Sinopsis del libro"
-        app:layout_constraintTop_toBottomOf="@id/itlAutor"
-        app:layout_constraintStart_toEndOf="@id/itlImagen"
-        app:layout_constraintEnd_toEndOf="parent" />
-
+        android:text="Cancelar"
+        android:backgroundTint="@color/color2"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/itrEstado"
+        app:layout_constraintStart_toEndOf="@id/itrImagen"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

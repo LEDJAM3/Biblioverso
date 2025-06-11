@@ -1,5 +1,6 @@
 package com.example.biblioverso.Views
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
@@ -78,6 +79,8 @@ class HomeActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when(item.itemId) {
             R.id.miReservas -> {
+                val intent = Intent(this@HomeActivity, ReservasActivity::class.java)
+                startActivity(intent)
                 true
             }
 
