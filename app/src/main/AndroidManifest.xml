@@ -20,27 +20,37 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Biblioverso"
         tools:targetApi="31">
+
         <activity
             android:name=".Views.ReservasActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
+
         <activity
             android:name=".Views.LibroActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
+
         <activity
             android:name=".Views.HomeActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
+
         <activity
             android:name=".Views.RegisterActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
+
         <activity
             android:name=".Views.MainActivity"
+            android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>

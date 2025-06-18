@@ -173,14 +173,23 @@ class HomeActivity : AppCompatActivity() {
         recognizer.process(image)
             .addOnSuccessListener { visionText ->
                 // Mostrar el texto reconocido en el TextView
-                val recognizedText = visionText.text.replace("\n", " ")
-                svBuscador.setQuery(recognizedText, false)
+                /*val recognizedText = visionText.text.replace("\n", " ")
+                svBuscador.setQuery(recognizedText, false)*/
 
-                // También puedes seguir mostrando los bloques en el log
-                for (block in visionText.textBlocks) {
-                    val blockText = block.text
-                    Log.d("MLKit", "Bloque: $blockText")
+                val imageHeight = bitmap.height
+
+                val titleBlock = visionText.textBlocks.maxByOrNull { block ->
+                    val box = block.boundingBox
+                    val heightScore = box?.height() ?: 0
+                    val positionScore = when {
+                        box != null && box.top < imageHeight / 3 -> 50
+                        box != null && box.top < imageHeight / 2 -> 25
+                        else -> 0
+                    }
+                    val lengthScore = block.text.length
+                    heightScore + positionScore + lengthScore
                 }
+                svBuscador.setQuery(titleBlock?.text ?: "", false)
             }
             .addOnFailureListener { e ->
                 e.printStackTrace()
