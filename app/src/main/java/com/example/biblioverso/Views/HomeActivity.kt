@@ -189,7 +189,8 @@ class HomeActivity : AppCompatActivity() {
                     val lengthScore = block.text.length
                     heightScore + positionScore + lengthScore
                 }
-                svBuscador.setQuery(titleBlock?.text ?: "", false)
+                val recognizedText = titleBlock?.text?.replace("\n", " ")
+                svBuscador.setQuery(recognizedText ?: "", false)
             }
             .addOnFailureListener { e ->
                 e.printStackTrace()
