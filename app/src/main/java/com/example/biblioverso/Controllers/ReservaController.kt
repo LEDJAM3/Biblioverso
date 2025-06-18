@@ -11,6 +11,7 @@ import com.example.biblioverso.Utils.Constants.API_KEY
 import com.google.gson.Gson
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.android.Android
+import io.ktor.client.request.delete
 import io.ktor.client.request.get
 import io.ktor.client.request.headers
 import io.ktor.client.request.patch
@@ -170,6 +171,28 @@ class ReservaController {
         catch (e: Exception) {
             Log.e("Obtener Reservas Adap", e.message.toString())
             null
+        }
+    }
+
+    suspend fun cancelarReserva(idReserva: Int, idLibro: Int): Boolean {
+        return try {
+            val response: HttpResponse =
+                client.delete("${BASE_URL}reserva?id_reserva=eq.$idReserva") {
+                    headers {
+                        append("apikey", API_KEY)
+                        append("Authorization", "Bearer $API_KEY")
+                    }
+                }
+            if (response.status.isSuccess()) {
+                actualizarStock(idLibro, estaDisponible = false, disponibilidad = true)
+                true
+            } else {
+                false
+            }
+        }
+        catch (e: Exception) {
+            Log.e("Cancelar Reserva", e.message.toString())
+            false
         }
     }
 }

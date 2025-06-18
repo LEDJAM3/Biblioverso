@@ -2,6 +2,7 @@ package com.example.biblioverso.Views
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -42,8 +43,24 @@ class ReservasActivity : AppCompatActivity() {
     }
 
     fun initRecycler() {
-        val reservaAdapter = ReservaAdapter(reservas)
+        val reservaAdapter = ReservaAdapter(reservas, this)
         rvReservas.adapter = reservaAdapter
+    }
 
+    fun cancelar(idReserva: Int, idLibro: Int) {
+        lifecycleScope.launch {
+            val cancelado = ReservaController().cancelarReserva(idReserva, idLibro)
+            if (cancelado) {
+                Toast.makeText(this@ReservasActivity, "Reserva cancelada", Toast.LENGTH_SHORT)
+                    .show()
+                finish()
+            } else {
+                Toast.makeText(
+                    this@ReservasActivity,
+                    "Error al cancelar la reserva",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
     }
 }
